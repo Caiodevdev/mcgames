@@ -12,7 +12,7 @@ public final class Projeto extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        save/DefaultConfig(); // Gera config.yml se não existir
+        saveDefaultConfig(); // Gera config.yml se não existir
         databaseManager = new DatabaseManager(this);
         databaseManager.connect();
 

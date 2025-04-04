@@ -13,8 +13,8 @@ repositories {
 }
 
 dependencies {
-    // Dependência do Spigot API (altere a versão conforme necessário)
     compileOnly 'org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT'
+    implementation 'mysql:mysql-connector-java:8.0.33' // Driver MySQL
 }
 
 def targetJavaVersion = 17
