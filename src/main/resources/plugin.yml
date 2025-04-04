@@ -1,0 +1,4 @@
+name: projeto
+version: '${version}'
+main: org.caique.mcgames.Projeto
+api-version: '1.20'
