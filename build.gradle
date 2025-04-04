@@ -7,9 +7,14 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    // Repositório do Spigot
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {
+    // Dependência do Spigot API (altere a versão conforme necessário)
+    compileOnly 'org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT'
 }
 
 def targetJavaVersion = 17
@@ -24,7 +29,6 @@ java {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
-
     if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
         options.release.set(targetJavaVersion)
     }
@@ -37,4 +41,18 @@ processResources {
     filesMatching('plugin.yml') {
         expand props
     }
+}
+
+// Tarefa para copiar o JAR pra pasta plugins
+task copyToPlugins(type: Copy) {
+    from jar // Pega o JAR gerado pela tarefa 'jar'
+    into 'C:/Users/caique/Desktop/caique/plugins' // Caminho da pasta plugins
+}
+
+// Faz a tarefa copyToPlugins rodar após o build
+build.finalizedBy copyToPlugins
+
+// Configura o nome do JAR (opcional, pra ficar mais organizado)
+jar {
+    archiveFileName = "${project.name}-${version}.jar"
 }
